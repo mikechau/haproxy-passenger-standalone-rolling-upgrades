@@ -1,4 +1,4 @@
-# haproxy-passenger-standalone-rolling-upgrades wiki!
+# haproxy-passenger-standalone-rolling-upgrades
 
 This is repository is an example of how you can do zero downtime rolling upgrades with `Haproxy` using `Phusion Passenger Standalone`, with `Ansible`.
 
