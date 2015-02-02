@@ -1,0 +1,1 @@
+COLOR = ENV['COLOR'] || 'none'

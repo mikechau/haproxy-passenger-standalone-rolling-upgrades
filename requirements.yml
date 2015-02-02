@@ -1,0 +1,9 @@
+- src: https://github.com/rvm/rvm1-ansible.git
+  version: master
+  path: ansible/roles
+  name: rvm1-ruby
+
+- src: https://github.com/DavidWittman/ansible-redis
+  version: master
+  path: ansible/roles
+  name: redis
