@@ -1,0 +1,59 @@
+global
+    log 127.0.0.1    local0
+    log 127.0.0.1    local1 notice
+    stats socket {{ haproxy_stats_socket }} mode 660 level admin
+    stats timeout 30s
+    chroot {{ haproxy_chroot_path }}
+    user {{ haproxy_user }}
+    group {{ haproxy_group }}
+    daemon
+
+defaults
+    log global
+    mode http
+    option httplog
+    option dontlognull
+    option forwardfor
+    option http-server-close
+    option tcp-smart-accept
+    option tcp-smart-connect
+
+    option abortonclose
+
+    retries 3
+    option redispatch
+
+    balance roundrobin
+
+    timeout client  30s
+    timeout connect 30s
+    timeout server  30s
+
+    timeout check 5s
+
+frontend http
+    bind :80
+    acl servers_down nbsrv({{ haproxy_app_name }}) lt 1
+    monitor-uri /haproxy?monitor
+    monitor fail if servers_down
+
+    default_backend {{ haproxy_app_name }}
+
+backend {{ haproxy_app_name }}
+    option httpchk GET /{{ haproxy_http_check_uri }}
+    http-check disable-on-404
+
+{% for app in haproxy_app_servers %}
+
+    server {{ app['id'] }} {{ app['host'] }}:{{ app['port'] }} check inter 2s rise 2 fall 3
+
+{% endfor %}
+
+listen stats :9001
+    mode http
+    stats enable
+    stats show-legends
+    stats hide-version
+    stats realm Haproxy\ Statistics
+    stats uri /
+    stats auth {{ haproxy_stat_user }}:{{ haproxy_stat_pass }}

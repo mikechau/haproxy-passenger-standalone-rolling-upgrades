@@ -1,0 +1,63 @@
+---
+############################################################
+##### Haproxy Config Settings (Required)
+############################################################
+
+haproxy_haproxyctl: true
+
+haproxy_user: haproxy
+haproxy_group: "{{ haproxy_user }}"
+
+haproxy_stat_user: haproxy
+haproxy_stat_pass: haproxy
+
+# / is automatically pre-appended
+haproxy_http_check_uri: ok.html
+
+haproxy_app_servers:
+  - id: default-server-1
+    host: 127.0.0.1
+    port: 4000
+    protocol: tcp
+
+  - id: default-server-2
+    host: 127.0.0.1
+    port: 4001
+    protocol: tcp
+
+haproxy_app_name: default
+
+############################################################
+##### Haproxy Installer Settings
+############################################################
+haproxy_source_root_path: /usr/local/src
+haproxy_version: 1.5.11
+haproxy_source_path: "{{ haproxy_source_root_path}}/haproxy-{{ haproxy_version }}"
+
+haproxy_source_url: http://www.haproxy.org/download/1.5/src/haproxy-1.5.11.tar.gz
+
+haproxy_local_sbin_path: /usr/local/sbin
+haproxy_local_sbin: "{{ haproxy_local_sbin_path }}/haproxy"
+haproxy_usr_sbin_path: /usr/sbin
+haproxy_config_path: /etc/haproxy
+haproxy_stats_path: /var/lib/haproxy
+
+haproxy_logrotate_config: /etc/logrotate.d/haproxy
+
+haproxy_rsyslog_priority: 20
+haproxy_rsyslog_conf: "/etc/rsyslog.d/{{ haproxy_rsyslog_priority }}-haproxy.conf"
+
+haproxy_log_path: /var/log/haproxy
+haproxy_log_info: "{{ haproxy_log_path }}/info.log"
+haproxy_log_notice: "{{ haproxy_log_path }}/notice.log"
+
+haproxy_binaries:
+  - haproxy
+  - haproxy-systemd-wrapper
+
+haproxy_make_config: TARGET=linux2628 CPU=x86_64 USE_OPENSSL=1 USE_ZLIB=1 USE_PCRE=1 USE_LINUX_TPROXY=1 USE_LINUX_SPLICE=1 USE_LIBCRYPT=1 USE_REGPARM=1
+
+haproxy_chroot_path: /var/run/haproxy
+haproxy_stats_socket: /var/run/haproxy.sock
+
+haproxy_initd: /etc/init.d/haproxy

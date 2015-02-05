@@ -1,0 +1,18 @@
+---
+galaxy_info:
+  author: Michael Chau
+  description: Ansible role for compiling and installing Haproxy and Haproxyctl.
+  company: 
+  license: license (MIT)
+  min_ansible_version: 1.8
+
+  platforms:
+  - name: EL
+    versions:
+    - 6
+
+  categories:
+  - web
+
+dependencies: []
+

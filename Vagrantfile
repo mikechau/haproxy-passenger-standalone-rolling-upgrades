@@ -14,6 +14,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     '~/.ssh/id_rsa'
   ]
 
+  # Main Server Entry Point via Haproxy
+  config.vm.network 'forwarded_port', guest: 80, host: 8080
+
   # Rails Server 1
   config.vm.network 'forwarded_port', guest: 4000, host: 4000
 
@@ -42,7 +45,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       ansible.limit = 'all'
       ansible.inventory_path = 'ansible/inventories/vagrant'
       ansible.playbook = 'ansible/vagrant_provision.yml'
-      ansible.verbose = 'vvvv'
+      ansible.verbose = 'vv'
     end
   end
 

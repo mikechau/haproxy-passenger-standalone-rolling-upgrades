@@ -1,0 +1,16 @@
+---
+- name: create directories
+  file: >
+    state=directory
+    path="{{ item }}"
+  with_items:
+    - "{{ haproxy_source_path }}"
+    - "{{ haproxy_chroot_path }}"
+    - "{{ haproxy_config_path }}"
+    - "{{ haproxy_stats_path }}"
+    - "{{ haproxy_log_path }}"
+
+- name: create stats file
+  file: >
+    state=touch
+    path="{{ haproxy_stats_path }}/stats"

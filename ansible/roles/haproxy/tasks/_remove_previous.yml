@@ -1,0 +1,12 @@
+---
+- name: remove haproxy binary symlinks
+  file: >
+    state=absent
+    dest="{{ haproxy_usr_sbin_path }}/{{ item }}"
+  with_items: haproxy_binaries
+
+- name: remove previous binaries
+  file: >
+    state=absent
+    dest="{{ haproxy_local_sbin_path }}/{{ item }}"
+  with_items: haproxy_binaries

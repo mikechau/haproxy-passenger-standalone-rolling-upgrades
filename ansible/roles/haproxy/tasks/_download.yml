@@ -1,0 +1,12 @@
+---
+- name: download haproxy tarball
+  get_url: >
+    url="{{ haproxy_source_url }}"
+    dest="{{ haproxy_source_root_path }}/haproxy-{{ haproxy_version }}.tar.gz"
+  register: get_haproxy
+
+- name: extract haproxy tarball
+  unarchive: >
+    src="{{ get_haproxy.dest }}"
+    dest="{{ haproxy_source_root_path }}"
+    copy=no

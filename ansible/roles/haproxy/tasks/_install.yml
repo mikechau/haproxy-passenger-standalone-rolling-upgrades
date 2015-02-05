@@ -1,0 +1,21 @@
+---
+- name: install haproxy
+  command: make install
+  args:
+    chdir: "{{ haproxy_source_path }}"
+
+- name: create haproxy user
+  user: >
+    name={{ haproxy_user }}
+    comment="Haproxy"
+    home={{ haproxy_source_path }}
+    shell=/bin/false
+    system=yes
+
+- name: link binaries to /usr/sbin
+  file: >
+    state=link
+    src={{ haproxy_local_sbin_path }}/{{ item }}
+    dest={{ haproxy_usr_sbin_path }}/{{ item }}
+    force=yes
+  with_items: haproxy_binaries

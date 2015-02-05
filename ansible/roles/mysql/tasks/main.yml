@@ -1,0 +1,46 @@
+---
+- name: install mysql
+  yum: "name={{ item }} state=present"
+  with_items:
+    - mysql
+    - mysql-server
+    - mysql-devel
+    - python-pip
+
+- name: install python libraries
+  pip: >
+    name="{{ item }}"
+    state=present
+  with_items:
+    - MySQL-python
+
+- name: autostart mysql
+  service: >
+    name=mysqld
+    enabled=yes
+    state=started
+
+- name: set up root user (no password)
+  mysql_user: >
+    name=root
+    priv=*.*:ALL,GRANT
+    state=present
+
+- name: set up application user with all privledges
+  mysql_user: >
+    name="{{ mysql_application_username }}"
+    password="{{ mysql_application_password }}"
+    priv=*.*:ALL,GRANT
+    state=present
+  notify:
+    - restart mysql
+
+- name: delete anonymous mysql user
+  mysql_user: >
+    name=""
+    state=absent
+
+- name: remove mysql test database
+  mysql_db: >
+    name=test
+    state=absent

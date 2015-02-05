@@ -1,0 +1,9 @@
+---
+
+haproxy_haproxyctl: true
+
+haproxy_app_servers: "{{ app_instances }}"
+
+haproxy_http_check_uri: "{{ app_healthcheck_uri }}"
+
+haproxy_app_name: "{{ app_name }}"

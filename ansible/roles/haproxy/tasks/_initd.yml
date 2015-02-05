@@ -1,0 +1,17 @@
+---
+- name: copy init script
+  command: "cp {{ haproxy_source_path }}/examples/haproxy.init /etc/init.d/haproxy"
+
+- name: make init.d script executable
+  file: >
+    state=touch
+    path=/etc/init.d/haproxy
+    mode="u=rwxr,g=xr,o=x"
+
+- name: check config
+  command: service haproxy check
+  register: haproxy_check_config
+
+- name: chkconfig
+  command: chkconfig haproxy on
+  register: haproxy_chkconfig_on

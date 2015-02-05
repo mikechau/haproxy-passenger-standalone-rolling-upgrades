@@ -1,0 +1,72 @@
+---
+- name: forward ssh keys
+  hosts: 127.0.0.1
+  connection: local
+  tasks:
+    - name: ssh-add
+      command: ssh-add
+
+    - name: ssh-add -L
+      command: ssh-add -L
+
+- name: update packages
+  hosts: application
+  roles:
+    - role: common
+      sudo: yes
+
+- name: setup database
+  hosts: database
+  roles:
+    - role: mysql
+      sudo: yes
+
+- name: configure vagrant
+  hosts: application
+  vars:
+    rails_app_strategy: setup
+  roles:
+    - role: haproxy
+      sudo: yes
+
+    - role: jemalloc
+      sudo: yes
+
+    - role: rvm1-ruby
+      sudo: yes
+      sudo_user: "{{ app_user }}"
+      rvm1_rubies:
+        - ruby-2.2.0
+      rvm1_install_flags: --auto-dotfiles --user-install
+      rvm1_ruby_install_flags: --with-jemalloc
+      rvm1_install_path: "/home/{{ app_user }}/.rvm"
+      rvm1_user: "{{ app_user }}"
+
+    - role: rails
+      rails_app_first_run: true
+      rails_app_id: titanium
+      rails_app_host: 127.0.0.1
+      rails_app_port: 4000
+
+    - role: rails
+      rails_app_first_run: false
+      rails_app_id: carbon
+      rails_app_host: 127.0.0.1
+      rails_app_port: 4001
+
+  tasks:
+    - name: get local git user.name
+      command: git config --global user.name
+      register: git_user_name
+      delegate_to: 127.0.0.1
+
+    - name: set git config --global user.name 
+      command: "git config --global user.name {{ git_user_name.stdout }}"
+
+    - name: get local git user.email
+      command: git config --global user.email
+      register: git_user_email
+      delegate_to: 127.0.0.1
+
+    - name: set git config --global user.email
+      command: "git config --global user.email {{ git_user_email.stdout }}"

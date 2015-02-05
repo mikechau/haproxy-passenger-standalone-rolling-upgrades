@@ -1,0 +1,19 @@
+---
+- name: git clone haproxyctl
+  git: >
+    repo=https://github.com/flores/haproxyctl.git
+    dest="/usr/local/haproxyctl"
+    version="master"
+    accept_hostkey=yes
+    force=yes
+    depth=1
+
+- name: symlink haproxyctl to init.d
+  file: >
+    state=link
+    src=/usr/local/haproxyctl/haproxyctl
+    dest=/etc/init.d/haproxyctl
+    force=yes
+
+- name: add to chkconfig
+  command: chkconfig --add haproxyctl

@@ -1,9 +1,21 @@
+---
 - src: https://github.com/rvm/rvm1-ansible.git
-  version: master
   path: ansible/roles
   name: rvm1-ruby
 
-- src: https://github.com/DavidWittman/ansible-redis
-  version: master
+- src: https://github.com/mikechau/ansible-redis.git
   path: ansible/roles
   name: redis
+
+- src: https://github.com/mikechau/rails.deploy-ansible.git
+  path: ansible/roles
+  name: rails
+
+- src: https://github.com/mikechau/haproxy-ansible.git
+  path: ansible/roles
+  name: haproxy
+
+- src: https://github.com/mikechau/ansible-jemalloc.git
+  path: ansible/roles
+  name: jemalloc
+

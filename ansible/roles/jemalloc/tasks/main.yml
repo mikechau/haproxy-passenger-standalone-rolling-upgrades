@@ -1,0 +1,6 @@
+---
+- include: _install_package.yml
+  when: jemalloc_install == 'package' and ansible_distribution == 'CentOS'
+
+- include: _install_source.yml
+  when: jemalloc_install == 'source'

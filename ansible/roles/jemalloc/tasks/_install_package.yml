@@ -1,0 +1,9 @@
+---
+- name: install jemalloc
+  yum: >
+    name="{{ item }}"
+    state=present
+    enablerepo=epel
+  with_items:
+    - jemalloc
+    - jemalloc-devel

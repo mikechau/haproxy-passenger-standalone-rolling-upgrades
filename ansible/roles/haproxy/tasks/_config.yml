@@ -1,0 +1,19 @@
+---
+- name: generate haproxy config
+  template: >
+    src=etc/haproxy/haproxy.cfg.j2
+    dest="{{ haproxy_config_path }}/haproxy.cfg"
+
+- name: generate logrotate config
+  template: >
+    src=etc/logrotate.d/haproxy.j2
+    dest="{{ haproxy_logrotate_config }}"
+  notify:
+    - restart rsyslog
+
+- name: generate syslog config
+  template: >
+    src=etc/rsyslog.d/haproxy.conf.j2
+    dest="{{ haproxy_rsyslog_conf }}"
+  notify:
+    - restart rsyslog

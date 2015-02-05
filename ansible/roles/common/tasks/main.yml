@@ -1,0 +1,48 @@
+---
+- name: upgrade all packages
+  yum: name=* state=latest
+
+- name: install the 'Development tools' package group
+  yum: name="@Development tools" state=present
+
+- name: install new packages
+  yum: >
+    name="{{ item }}"
+    state=present
+  with_items:
+    - epel-release
+    - curl
+    - curl-devel
+    - nano
+    - vim
+    - sqlite-devel
+    - libyaml-devel
+    - libffi-devel
+    - readline-devel
+    - zlib-devel
+    - openssl-devel
+    - ruby-devel
+    - rubygems
+    - libxml2-devel
+    - libxslt-devel
+    - docker
+    - python-pip
+    - java
+    - nodejs
+    - htop
+    - libselinux-python
+    - pcre-devel
+    - gcc
+    - make
+    - httpd-tools
+    - siege
+    - python-devel
+    - lsof
+
+- name: install docker-py
+  pip: >
+    name="{{ item }}"
+    state=present
+  with_items:
+    - docker-py
+    - httplib2

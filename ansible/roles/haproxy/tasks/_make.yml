@@ -1,0 +1,7 @@
+---
+- name: compile haproxy
+  command: "make {{ haproxy_make_config }}"
+  args:
+    chdir: "{{ haproxy_source_path }}"
+    creates: haproxy
+
