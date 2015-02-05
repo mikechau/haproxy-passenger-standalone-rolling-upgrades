@@ -52,6 +52,7 @@ backend {{ haproxy_app_name }}
 listen stats :9001
     mode http
     stats enable
+    stats refresh 10s
     stats show-legends
     stats hide-version
     stats realm Haproxy\ Statistics
