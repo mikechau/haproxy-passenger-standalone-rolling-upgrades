@@ -1,0 +1,18 @@
+---
+- name: rollback application
+  hosts: application
+  remote_user: vagrant
+  vars:
+    rails_app_strategy: rollback
+  roles:
+    - role: rails
+      rails_app_first_run: true
+      rails_app_id: titanium
+      rails_app_host: 127.0.0.1
+      rails_app_port: 4000
+
+    - role: rails
+      rails_app_first_run: false
+      rails_app_id: carbon
+      rails_app_host: 127.0.0.1
+      rails_app_port: 4001
