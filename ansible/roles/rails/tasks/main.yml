@@ -1,6 +1,6 @@
 ---
 - include: _fact_check.yml
-  when:   when: rails_app_run == 'first' and rails_app_haproxy
+  when: rails_app_run == 'first' and rails_app_haproxy
 
 - include: phase_preliminary.yml
 
