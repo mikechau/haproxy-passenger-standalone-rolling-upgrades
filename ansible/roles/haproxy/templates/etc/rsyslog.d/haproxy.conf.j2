@@ -1,8 +1,8 @@
 $ModLoad imudp
 $UDPServerRun 514
 
-!haproxy
-local0.=info -{{ haproxy_log_info }}
-& ~
+if $programname == 'haproxy' and $syslogseverity == '6' and $syslogfacility-text == 'local0' then -{{ haproxy_log_info }}
 
-local1.notice {{ haproxy_log_notice }}
+if $programname == 'haproxy' and $syslogfacility-text == 'local0' then ~
+
+if $programname == 'haproxy' and $syslogfacility-text == 'local1' then {{ haproxy_log_notice }}

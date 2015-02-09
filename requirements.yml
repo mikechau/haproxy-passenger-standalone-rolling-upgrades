@@ -19,3 +19,6 @@
   path: ansible/roles
   name: jemalloc
 
+- src: https://github.com/mikechau/ansible-custom-filter-plugins.git
+  path: ansible/filter_plugins
+  name: joins

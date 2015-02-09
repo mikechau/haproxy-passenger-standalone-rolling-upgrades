@@ -2,7 +2,7 @@
 
 rails_app_name: "{{ app_name }}"
 rails_app_user: "{{ app_user }}"
-rails_app_http_check_path: "{{ app_healthcheck_uri }}"
+rails_app_http_check_uri: "{{ app_healthcheck_uri }}"
 
 rails_app_host: 127.0.0.1
 rails_app_platform: "{{ app_user }}"

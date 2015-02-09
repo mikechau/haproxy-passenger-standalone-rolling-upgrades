@@ -41,5 +41,7 @@ ansible/filter_plugins/**/LICENSE
 # Ignore generated binstubs
 cmd
 
-!/config/passenger/.keep
 /config/passenger/*
+!/config/passenger/.keep
+
+.galaxy_install_info

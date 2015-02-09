@@ -4,7 +4,7 @@
     state=stopped
     name=haproxy
 
-- name: restart rsyslog
+- name: reload rsyslog
   service: >
-    state=restarted
+    state=reloaded
     name=rsyslog

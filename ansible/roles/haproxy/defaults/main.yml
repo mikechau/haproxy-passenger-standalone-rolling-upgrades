@@ -59,5 +59,6 @@ haproxy_make_config: TARGET=linux2628 CPU=x86_64 USE_OPENSSL=1 USE_ZLIB=1 USE_PC
 
 haproxy_chroot_path: /var/run/haproxy
 haproxy_stats_socket: /var/run/haproxy.sock
+haproxy_stats_socket_user: /var/run/haproxy-stats.sock
 
 haproxy_initd: /etc/init.d/haproxy
