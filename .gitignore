@@ -41,4 +41,5 @@ ansible/filter_plugins/**/LICENSE
 # Ignore generated binstubs
 cmd
 
-config/passenger/*
+!/config/passenger/.keep
+/config/passenger/*
