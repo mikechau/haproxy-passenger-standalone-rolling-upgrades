@@ -18,7 +18,7 @@
 /config/database.yml
 
 # Ignore Vagrant
-/.vagrant
+.vagrant
 
 .rubocop_todo.yml
 
@@ -35,6 +35,10 @@
 ansible/roles/**/LICENSE
 ansible/roles/**/.*
 ansible/roles/**/tests/*
+ansible/filter_plugins/**/LICENSE
+*.pyc
 
 # Ignore generated binstubs
-bin/app
+cmd
+
+config/passenger/*
