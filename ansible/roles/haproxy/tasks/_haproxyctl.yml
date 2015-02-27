@@ -3,7 +3,7 @@
   git: >
     repo=https://github.com/flores/haproxyctl.git
     dest="/usr/local/haproxyctl"
-    version="master"
+    version="1.3.0"
     accept_hostkey=yes
     force=yes
     depth=1
