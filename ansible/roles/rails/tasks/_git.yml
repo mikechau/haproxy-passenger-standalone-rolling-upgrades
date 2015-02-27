@@ -7,6 +7,24 @@
     accept_hostkey=yes
     force=yes
     depth="{{ rails_app_git_depth | default(omit) }}"
+  ignore_errors: true
+  register: git_checkout
+
+- name: remove old git repo if it failed to checkout
+  file: >
+    state=absent
+    path="{{ rails_app_path }}"
+  when: git_checkout | failed
+
+- name: recheckout the git repo if it failed
+  git: >
+    repo="{{ rails_app_git_repo }}"
+    dest="{{ rails_app_path }}"
+    version="{{ rails_app_git_branch }}"
+    accept_hostkey=yes
+    force=yes
+    depth="{{ rails_app_git_depth | default(omit) }}"
+  when: git_checkout | failed
 
 - name: clean up build directory
   file: >

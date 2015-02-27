@@ -1,0 +1,6 @@
+---
+- name: start delayed jobs
+  shell: "bash -lc 'bin/delayed_job {{ rails_app_delayed_job_start_flags }} start'"
+  args:
+    chdir: "{{ rails_app_current_path }}"
+  environment: rails_app_environment

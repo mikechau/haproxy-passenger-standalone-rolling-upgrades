@@ -1,0 +1,24 @@
+---
+# PRELIMINARY
+
+- include: _rvm_delayed_job_stop.yml
+  when: rails_app_worker == 'delayed_job' and rails_app_rvm
+
+# RELEASE
+
+- include: _release_set_new_release_path.yml
+  when: rails_app_run == 'first'
+
+# DEPLOY
+
+- include: _deploy_current_app.yml
+
+- include: _build_current_configs.yml
+
+- include: _deploy_binstubs.yml
+
+- include: _rvm_delayed_job_start.yml
+  when: rails_app_worker == 'delayed_job'
+
+- include: _deploy_complete.yml
+  when: rails_app_run == 'last'

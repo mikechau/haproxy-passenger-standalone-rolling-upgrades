@@ -1,29 +1,14 @@
 ---
 # PRELIMINARY
 
-- include: _rvm_delayed_job_stop_all.yml
-  when: rails_app_run == 'first' and rails_app_worker == 'delayed_job' and rails_app_rvm
-
-- include: _haproxyctl_detach.yml
-  when: rails_app_haproxyctl
-
-- include: _rvm_passenger_standalone_stop_all.yml
-  when: rails_app_run == 'first' and rails_app_server == 'passenger_standalone' and rails_app_rvm
-
-- include: _purge.yml
-  when: rails_app_run == 'first'
+- include: _rvm_delayed_job_stop.yml
+  when: rails_app_worker == 'delayed_job' and rails_app_rvm
 
 # SETUP
-
-- include: _setup_system.yml
-  when: rails_app_run == 'first'
 
 - include: _create_app_directories.yml
 
 - include: _create_app_symlinks.yml
-
-- include: _create_external_app_symlink.yml
-  when: rails_app_symlink_to
 
 # BUILD
 
@@ -39,7 +24,7 @@
 - include: _build_configs.yml
   when: rails_app_run == 'first'
 
-- include: _rvm_rake_db_setup.yml
+- include: _rvm_rake_db_migrate.yml
   when: rails_app_run == 'first' and rails_app_rvm
 
 - include: _rvm_rake_assets_precompile.yml
@@ -47,7 +32,7 @@
 
 # RELEASE
 
-- include: _release_set_initial_version.yml
+- include: _release_set_last_version.yml
   when: rails_app_run == 'first'
 
 - include: _release_set_new_release_path.yml
@@ -64,17 +49,8 @@
 
 - include: _deploy_binstubs.yml
 
-- include: _rvm_passenger_standalone_start.yml
-  when: rails_app_server == 'passenger_standalone' and rails_app_rvm
-
-- include: _port_start_listening.yml
-
-- include: _haproxyctl_attach.yml
-  when: rails_app_haproxyctl
-
-- include: _ping_app.yml
-
-- include: _haproxyctl_healthcheck_up.yml
+- include: _rvm_delayed_job_start.yml
+  when: rails_app_worker == 'delayed_job'
 
 - include: _deploy_complete.yml
   when: rails_app_run == 'last'

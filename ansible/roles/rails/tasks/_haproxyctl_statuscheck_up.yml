@@ -6,7 +6,7 @@
   register: env
 
 - name: check haproxy stats
-  script: "haproxy-stat.rb --backend={{ rails_app_name }} --current-server={{ rails_app_id }} --servers={{ rails_app_all_instances | joins_by_key('id') }}"
+  script: "haproxy-stat.rb --backend={{ rails_app_name }} --current-server={{ rails_app_id }} --servers={{ rails_app_server_instances | joins_by_key('id') }}"
   args:
     chdir: "{{ rails_app_path }}"
   environment: env.stdout | from_yaml

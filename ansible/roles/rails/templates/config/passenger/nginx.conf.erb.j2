@@ -19,7 +19,7 @@
 
 
 master_process on;
-worker_processes 4;
+worker_processes {{ rails_app_nginx_worker_processes }};
 daemon on;
 #error_log '<%= @options[:log_file] %>' <% if debugging? %>info<% end %>;
 
@@ -38,12 +38,20 @@ pid '<%= @options[:pid_file] %>';
 events {
     use epoll;
     accept_mutex on;
-    worker_connections 2048;
+    worker_connections {{ rails_app_nginx_worker_connections }};
 }
 
 http {
-    server_tokens off;
+    map $status $loggable {
+        ~^[23]  0;
+        default 1;
+    }
 
+    server_tokens off;
+    passenger_show_version_in_header off;
+    log_format main '$http_x_forwarded_for - $request - [$time_local] '
+                        '"$request" $status $body_bytes_sent '
+                        '"$http_referer" "$http_user_agent"';
     log_format debug '[$time_local] $msec  "$request" $status conn=$connection sent=$bytes_sent body_sent=$body_bytes_sent';
     include '<%= PhusionPassenger.resources_dir %>/mime.types';
     passenger_ruby <%= PlatformInfo.ruby_command %>;
@@ -82,7 +90,8 @@ http {
     types_hash_max_size 2048;
     server_names_hash_bucket_size 64;
     client_max_body_size 1024m;
-    access_log off;
+    #access_log off;
+    access_log syslog:server=127.0.0.1,facility=local1,tag=nginx main if=$loggable;
     error_log syslog:server=127.0.0.1,facility=local0,tag=nginx;
     keepalive_timeout 60;
     underscores_in_headers on;
@@ -90,10 +99,7 @@ http {
     gzip_comp_level 3;
     gzip_min_length 150;
     gzip_proxied any;
-    gzip_types text/plain text/css text/json text/javascript \
-        application/javascript application/x-javascript application/json \
-        application/rss+xml application/vnd.ms-fontobject application/x-font-ttf \
-        application/xml font/opentype image/svg+xml text/xml;
+    gzip_types text/plain text/css text/json text/javascript application/javascript application/x-javascript application/json application/rss+xml application/vnd.ms-fontobject application/x-font-ttf application/xml font/opentype image/svg+xml text/xml;
     
     <% if @apps.size > 1 %>
     # Default server entry.
@@ -180,13 +186,20 @@ http {
         location @dynamic_request {
             passenger_enabled on;
         }
-        location /{{ rails_app_http_check_uri }} {
+        # Healthcheck
+        location "{{ rails_app_nginx_static_location }}" {
+            access_log off;
+            #access_log syslog:server=127.0.0.1,facility=local1,tag=nginx_hc;
+            #error_log syslog:server=127.0.0.1,facility=local1,tag=nginx_healthcheck;
+
             add_header Pragma private;
             add_header Cache-Control "no-store, no-cache, must-revalidate";
             add_header Last-Modified "";
             if_modified_since off;
             expires off;
-            error_log syslog:server=127.0.0.1,facility=local1,tag=nginx_healthcheck;
+
+            try_files $uri =404;
+            error_page 404 /404.html;
         }
     }
     passenger_pre_start http://<%= nginx_listen_address(app) %>;

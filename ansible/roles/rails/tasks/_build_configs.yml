@@ -1,5 +1,5 @@
 ---
-- name: generate application configs
+- name: generate application configs (build)
   template: >
     src="{{ item.template }}"
     dest="{{ rails_app_path }}/{{ item.dest }}"

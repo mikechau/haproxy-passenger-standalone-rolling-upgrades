@@ -2,7 +2,7 @@
 - name: check if passenger is running
   stat: >
     path="{{ rails_app_pids_path }}/{{ item.id }}.pid"
-  with_items: rails_app_all_instances
+  with_items: rails_app_server_instances
   register: passenger_instances
 
 - name: stop passenger processes (w/ rvm)

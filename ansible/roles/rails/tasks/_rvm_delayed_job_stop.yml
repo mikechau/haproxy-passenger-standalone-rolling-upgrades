@@ -1,0 +1,12 @@
+---
+- name: check if delayed job exists
+  stat: >
+    path="{{ rails_app_current_path }}"
+  register: delayed_job_dir
+
+- name: stop delayed jobs
+  shell: "bash -lc 'bin/delayed_job stop'"
+  args:
+    chdir: "{{ rails_app_current_path }}"
+  environment: rails_app_environment
+  when: delayed_job_dir.stat.isdir is defined and delayed_job_dir.stat.isdir

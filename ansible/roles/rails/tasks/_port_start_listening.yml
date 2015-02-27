@@ -3,6 +3,6 @@
   wait_for: >
     port="{{ rails_app_port }}"
     delay=5
-    host=0.0.0.0
+    host="{{ rails_app_bind_ip }}"
     state=started
     timeout=720

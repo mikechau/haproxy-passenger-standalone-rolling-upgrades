@@ -1,5 +1,5 @@
 ---
-- include: _create_extermal_app_symlink.yml
+- include: _create_external_app_symlink.yml
   when: rails_app_symlink_to
 
 - include: _rvm_bundle_install.yml

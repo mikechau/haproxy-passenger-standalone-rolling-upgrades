@@ -33,8 +33,6 @@
     src=etc/rsyslog.d/rails_app.conf.j2
     dest="{{ rails_app_rsyslog_path }}/{{ rails_app_rsyslog_conf }}"
   sudo: yes
-  notify:
-    - reload rsyslog
 
 - name: generate logrotate config (app)
   template: >
@@ -60,8 +58,6 @@
     src=etc/rsyslog.d/nginx.conf.j2
     dest="{{ rails_app_rsyslog_path }}/{{ rails_app_nginx_rsyslog_conf }}"
   sudo: yes
-  notify:
-    - reload rsyslog
 
 - name: generate logrotate config (nginx)
   template: >
@@ -69,5 +65,8 @@
     dest="{{ rails_app_logrotate_path }}/{{ rails_app_name }}-nginx"
   sudo: yes
 
-- name: application flush handlers
-  meta: flush_handlers
+- name: restart rsyslog
+  service: >
+    state=restarted
+    name=rsyslog
+  sudo: yes

@@ -1,0 +1,6 @@
+---
+- name: generate application configs (current)
+  template: >
+    src="{{ item.template }}"
+    dest="{{ rails_app_current_path }}/{{ item.dest }}"
+  with_items: rails_app_configs

@@ -39,6 +39,9 @@ gem 'simple_form'
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
 
+# RACK CORS
+gem 'rack-cors'
+
 # STATE MANAGEMENT
 gem 'aasm'
 
