@@ -22,7 +22,9 @@
 
 - name: set up root user (no password)
   mysql_user: >
+    host="%"
     name=root
+    password=""
     priv=*.*:ALL,GRANT
     state=present
 
