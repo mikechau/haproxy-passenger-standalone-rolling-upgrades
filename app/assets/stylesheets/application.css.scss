@@ -1,0 +1,38 @@
+// Bootswatch variables
+@import "vars/paper_custom";
+
+// Bootstrap
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+@import "bootswatch/paper/bootswatch";
+
+// Font Awesome
+@import "font-awesome";
+
+// Nprogress
+@import "nprogress";
+@import "nprogress-bootstrap";
+
+// Boostrap Custom
+@import "bs_custom/bs_callouts";
+@import "bs_custom/sub_nav";
+@import "bs_custom/nav_justified";
+@import "bs_custom/nav_search";
+@import "bs_custom/sub_nav";
+
+// Bootstrap v3.3 Backports
+// Remove when Bootstrap is upgraded to 3.3
+@import "bs_backport/media";
+
+// Application Specific
+@import "app/footer";
+@import "app/feed";
+
+.blue {
+  background-color: #3498db;
+}
+
+.green {
+  background-color: #2ecc71;
+}

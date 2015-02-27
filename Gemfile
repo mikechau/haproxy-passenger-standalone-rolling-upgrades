@@ -1,52 +1,31 @@
 source 'https://rubygems.org'
 
+gem 'bundler', '>= 1.7.0'
+
 # APPLICATION
 gem 'rails', '~> 4.2.0'
 
 # ASSETS
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '~> 3.2.0.2'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'font-awesome-rails'
 gem 'jquery-rails'
 gem 'nprogress-rails'
-gem 'rails_script', '~> 0.6.1'
 gem 'sass-rails', '~> 5.0'
-gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 
-# AUTHENTICATION
-# gem 'devise'
-# gem 'devise_ldap_authenticatable', :git => 'git://github.com/cschiewek/devise_ldap_authenticatable.git'
-
-# AUTHORIZATION
-gem 'pundit'
-# gem 'rolify'
-
-# BREADCRUMBS
-gem 'breadcrumbs_on_rails'
+source 'https://rails-assets.org' do
+  gem 'rails-assets-bootswatch'
+end
 
 # CONFIG
 gem 'figaro'
 
 # DATABASE ADAPTERS
 gem 'mysql2'
-gem 'redis'
-
-# FORMS
-gem 'simple_form'
-
-# PAGINATION
-gem 'kaminari'
-gem 'bootstrap-kaminari-views'
 
 # RACK CORS
 gem 'rack-cors'
-
-# STATE MANAGEMENT
-gem 'aasm'
-
-# SESSION STORES
-gem 'redis-session-store'
 
 # UTILITIES
 gem 'foreman', require: false
@@ -56,7 +35,6 @@ gem 'gorgeous', require: false
 gem 'jbuilder', '~> 2.0'
 
 # WORKERS
-gem 'delayed_job_active_record'
 gem 'sucker_punch'
 
 group :production, :vagrant_production do

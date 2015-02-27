@@ -1,0 +1,69 @@
+// We need to rip bootstrap's .nav-justified class to replace it with our own .pNG-custom-nav-justified to disable bootstrap's border: none, because it will leave a blue border around the tab links.
+
+@media (min-width: 768px) {
+  .pNG-custom-nav-justified, .nav-tabs.pNG-custom-nav-justified {
+    width: 100%;
+  }
+
+  .pNG-custom-nav-justified > li, .nav-tabs.pNG-custom-nav-justified > li {
+    float: none;
+  }
+
+  .pNG-custom-nav-justified > li > a, .nav-tabs.pNG-custom-nav-justified > li > a {
+    text-align: center;
+    margin-bottom: 5px;
+  }
+
+  .pNG-custom-nav-justified > .dropdown .dropdown-menu {
+    top: auto;
+    left: auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .pNG-custom-nav-justified > li, .nav-tabs.pNG-custom-nav-justified > li {
+    display: table-cell;
+    width: 1%;
+  }
+
+  .pNG-custom-nav-justified > li > a, .nav-tabs.pNG-custom-nav-justified > li > a {
+    margin-bottom: 0;
+  }
+
+  .nav-tabs-justified, .nav-tabs.pNG-custom-nav-justified {
+    border-bottom: 0;
+  }
+
+  .nav-tabs-justified > li > a, .nav-tabs.pNG-custom-nav-justified > li > a {
+    margin-right: 0;
+    border-radius: 3px;
+  }
+
+  .nav-tabs-justified > .active > a, .nav-tabs.pNG-custom-nav-justified > .active > a,
+  .nav-tabs-justified > .active > a:hover,
+  .nav-tabs.pNG-custom-nav-justified > .active > a:hover,
+  .nav-tabs-justified > .active > a:focus,
+  .nav-tabs.pNG-custom-nav-justified > .active > a:focus {
+    border: 1px solid rgba(255, 255, 255, 0);
+  }
+}
+
+@media (min-width: 768px) {
+  .nav-tabs-justified > li > a, .nav-tabs.pNG-custom-nav-justified > li > a {
+    border-bottom: 1px solid rgba(255, 255, 255, 0);
+    border-radius: 3px 3px 0 0;
+  }
+
+  .nav-tabs-justified > .active > a, .nav-tabs.pNG-custom-nav-justified > .active > a,
+  .nav-tabs-justified > .active > a:hover,
+  .nav-tabs.pNG-custom-nav-justified > .active > a:hover,
+  .nav-tabs-justified > .active > a:focus,
+  .nav-tabs.pNG-custom-nav-justified > .active > a:focus {
+    border-bottom-color: #fff;
+    border-bottom-width: 0;
+  }
+}
+
+// .nav-tabs.pNG-custom-nav-justified > li > a, .nav-tabs.pNG-custom-nav-justified > li > a:hover, .nav-tabs.pNG-custom-nav-justified > .active > a, .nav-tabs.pNG-custom-nav-justified > .active > a:hover {
+//   border: none;
+// }

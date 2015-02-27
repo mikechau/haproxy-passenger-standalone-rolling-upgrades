@@ -1,0 +1,10 @@
+{
+  "esnext": true,
+  "strict": true,
+  "node": true,
+  "globals": {
+    "__UserData": false,
+    "document": false,
+    "window": false
+  }
+}

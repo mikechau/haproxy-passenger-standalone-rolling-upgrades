@@ -1,0 +1,7 @@
+.pNG-feed-item {
+  padding: 1em 0 1em 0;
+}
+
+.pNG-feed-item:not(:last-child) {
+  border-bottom: 1px solid #ccc;
+}

@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   get '/fast', to: 'sieges#fast'
   get '/slow', to: 'sieges#slow'
   get '/color', to: 'sieges#color'
+
+  get '/react/(*path)', to: 'react#index', as: :react
 end

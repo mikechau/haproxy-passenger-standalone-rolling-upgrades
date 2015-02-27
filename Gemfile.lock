@@ -24,8 +24,8 @@ GIT
 
 GEM
   remote: https://rubygems.org/
+  remote: https://rails-assets.org/
   specs:
-    aasm (4.0.8)
     actionmailer (4.2.0)
       actionpack (= 4.2.0)
       actionview (= 4.2.0)
@@ -68,9 +68,6 @@ GEM
     ast (2.0.0)
     astrolabe (1.3.0)
       parser (>= 2.2.0.pre.3, < 3.0)
-    autoprefixer-rails (5.1.1)
-      execjs
-      json
     awesome_print (1.6.1)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -78,13 +75,8 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap-kaminari-views (0.0.5)
-      kaminari (>= 0.13)
-      rails (>= 3.1)
-    bootstrap-sass (3.3.3)
-      autoprefixer-rails (>= 5.0.0.1)
-      sass (>= 3.2.19)
-    breadcrumbs_on_rails (2.3.0)
+    bootstrap-sass (3.2.0.2)
+      sass (~> 3.2)
     builder (3.2.2)
     bullet (4.14.2)
       activesupport (>= 3.0.0)
@@ -110,11 +102,6 @@ GEM
     database_cleaner (1.4.0)
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
-    delayed_job (4.0.6)
-      activesupport (>= 3.0, < 5.0)
-    delayed_job_active_record (4.0.3)
-      activerecord (>= 3.0, < 5.0)
-      delayed_job (>= 3.0, < 4.1)
     did_you_mean (0.9.6)
       interception
     diff-lcs (1.2.5)
@@ -188,9 +175,6 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (1.8.2)
-    kaminari (0.16.2)
-      actionpack (>= 3.0.0)
-      activesupport (>= 3.0.0)
     listen (2.8.5)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
@@ -247,8 +231,6 @@ GEM
     pry-stack_explorer (0.4.9.1)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
-    pundit (0.3.0)
-      activesupport (>= 3.0.0)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.6.0)
@@ -269,6 +251,11 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.2.0)
       sprockets-rails
+    rails-assets-bootstrap (3.3.2)
+      rails-assets-jquery (>= 1.9.1)
+    rails-assets-bootswatch (3.3.2)
+      rails-assets-bootstrap (~> 3.3.2)
+    rails-assets-jquery (2.1.3)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.5)
@@ -277,8 +264,6 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.1)
       loofah (~> 2.0)
-    rails_script (0.6.1)
-      coffee-rails (~> 4.0, >= 4.0.0)
     railties (4.2.0)
       actionpack (= 4.2.0)
       activesupport (= 4.2.0)
@@ -290,10 +275,6 @@ GEM
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
     rdoc (4.2.0)
-    redis (3.2.0)
-    redis-session-store (0.8.0)
-      actionpack (>= 3, < 5)
-      redis
     rspec (3.1.0)
       rspec-core (~> 3.1.0)
       rspec-expectations (~> 3.1.0)
@@ -333,9 +314,6 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     shellany (0.0.1)
-    simple_form (3.1.0)
-      actionpack (~> 4.0)
-      activemodel (~> 4.0)
     slop (3.6.0)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
@@ -359,8 +337,6 @@ GEM
     tilt (1.4.1)
     timers (4.0.1)
       hitimes
-    turbolinks (2.5.3)
-      coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.7.0)
@@ -374,17 +350,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aasm
   annotate
   better_errors
   binding_of_caller
-  bootstrap-kaminari-views
-  bootstrap-sass
-  breadcrumbs_on_rails
+  bootstrap-sass (~> 3.2.0.2)
   bullet
+  bundler (>= 1.7.0)
   coffee-rails (~> 4.1.0)
   database_cleaner
-  delayed_job_active_record
   did_you_mean
   factory_girl_rails
   figaro
@@ -399,30 +372,24 @@ DEPENDENCIES
   jazz_hands!
   jbuilder (~> 2.0)
   jquery-rails
-  kaminari
   lol_dba
   mysql2
   nprogress-rails
   passenger
   pry-byebug
-  pundit
   quiet_assets
   rack-cors
   rack-livereload
   railroady
   rails (~> 4.2.0)
-  rails_script (~> 0.6.1)
-  redis
-  redis-session-store
+  rails-assets-bootswatch!
   rspec-rails (~> 3.0)
   rubocop
   rubocop-rspec
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
-  simple_form
   spring!
   spring-commands-rspec
   sucker_punch
   thin
-  turbolinks
   uglifier (>= 1.3.0)

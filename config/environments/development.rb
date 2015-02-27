@@ -34,4 +34,11 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Path to react frontend
+  config.x.react.frontend = '/main'
+
+  config.action_controller.asset_host = proc { |source|
+    'http://localhost:2992/assets' if source =~ /main\.js$/i
+  }
 end

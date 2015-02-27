@@ -45,3 +45,11 @@ cmd
 !/config/passenger/.keep
 
 .galaxy_install_info
+
+# Ignore coverage
+/coverage/*
+
+npm-debug.log
+/react/node_modules/*
+/react/build/*
+
