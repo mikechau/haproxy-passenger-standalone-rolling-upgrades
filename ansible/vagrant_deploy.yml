@@ -4,15 +4,18 @@
   remote_user: vagrant
   vars:
     rails_app_strategy: deploy
+    rails_app_platform: production
   roles:
     - role: rails
       rails_app_run: first
+      rails_app_type: server
       rails_app_id: titanium
       rails_app_host: 127.0.0.1
       rails_app_port: 4000
 
     - role: rails
       rails_app_run: last
+      rails_app_type: server
       rails_app_id: carbon
       rails_app_host: 127.0.0.1
       rails_app_port: 4001

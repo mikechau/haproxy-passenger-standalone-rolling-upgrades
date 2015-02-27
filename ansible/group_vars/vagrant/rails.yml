@@ -16,10 +16,15 @@ rails_app_all_instances: "{{ app_instances }}"
 
 rails_app_rvm: true
 
-rails_app_haproxy: true
+rails_app_haproxyctl: true
 
 rails_app_db_username: "{{ db_user }}"
 rails_app_db_password: "{{ db_pass }}"
 
 rails_app_env_config:
   APPLICATION_NAME: "{{ app_name }}"
+
+rails_app_environment:
+  RAILS_ENV: production
+
+rails_app_platform: production

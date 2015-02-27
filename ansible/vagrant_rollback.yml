@@ -3,6 +3,7 @@
   hosts: application
   remote_user: vagrant
   vars:
+    rails_app_platform: production
     rails_app_strategy: rollback
   roles:
     - role: rails

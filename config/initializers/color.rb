@@ -1,1 +1,1 @@
-COLOR = ENV['COLOR'] || 'none'
+COLOR = ENV['APPLICATION_NAME'] == 'titanium' ? 'blue' : 'green'

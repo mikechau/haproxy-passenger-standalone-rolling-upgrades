@@ -18,3 +18,5 @@ app_healthcheck_uri: ok.html
 
 db_user: "{{ mysql_application_username }}"
 db_pass: "{{ mysql_application_password }}"
+
+app_platform: production
