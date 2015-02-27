@@ -12,7 +12,7 @@ class SiegesController < ApplicationController
   end
 
   def color
-    render json: { status: 'OK', color: COLOR, time: Time.current }
+    render json: { status: 'OK', color: COLOR, time: Time.current, id: APP_ID }
   end
 
   private

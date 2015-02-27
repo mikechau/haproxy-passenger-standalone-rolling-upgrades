@@ -22,6 +22,7 @@ rails_app_db_username: "{{ db_user }}"
 rails_app_db_password: "{{ db_pass }}"
 
 rails_app_env_config:
+  APPLICATION_ID: "{{ rails_app_id }}"
   APPLICATION_NAME: "{{ app_name }}"
 
 rails_app_environment:

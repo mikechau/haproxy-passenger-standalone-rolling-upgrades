@@ -11,10 +11,10 @@
 
 # APPLICATION CONFIG
 {% for (key, value) in rails_app_env_config.iteritems() %}
-  {{ key }}: {{ value }}
+{{ key }}: {{ value }}
 {% endfor %}
 
 # APPLICATION SECRETS
 {% for (key, value) in rails_app_env_secrets.iteritems() %}
-  {{ key }}: {{ value }}
+{{ key }}: {{ value }}
 {% endfor %}
