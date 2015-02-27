@@ -12,9 +12,6 @@ class ColorResponseStore {
   }
 
   onReceiveColorResponse(response) {
-
-    console.log('got it');
-
     if (this.responses.length >= 30) {
       this.responses.pop();
     }

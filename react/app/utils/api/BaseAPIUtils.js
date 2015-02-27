@@ -81,5 +81,5 @@ var makePromise = (request) => {
     });
 };
 
-function UnauthorizedRequest() {};
+function UnauthorizedRequest() {}
 UnauthorizedRequest.prototype = Object.create(Error.prototype);

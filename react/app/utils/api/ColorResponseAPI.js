@@ -1,3 +1,5 @@
+'use strict';
+
 import { getAPI } from './BaseAPIUtils';
 
 const GET_PATH = 'color';
