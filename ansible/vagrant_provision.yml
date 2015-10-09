@@ -27,6 +27,9 @@
     rails_app_strategy: setup
     rails_app_platform: production
   roles:
+    - role: iptables
+      sudo: yes
+
     - role: haproxy
       sudo: yes
 
@@ -64,7 +67,7 @@
       register: git_user_name
       delegate_to: 127.0.0.1
 
-    - name: set git config --global user.name 
+    - name: set git config --global user.name
       command: "git config --global user.name {{ git_user_name.stdout }}"
 
     - name: get local git user.email

@@ -28,6 +28,8 @@
     - docker
     - python-pip
     - java
+    - http-parser
+    - libuv
     - nodejs
     - htop
     - libselinux-python

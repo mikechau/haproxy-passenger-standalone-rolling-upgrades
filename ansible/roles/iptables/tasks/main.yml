@@ -1,0 +1,10 @@
+---
+- name: open ports
+  command: "iptables -I INPUT -p tcp -m tcp --dport {{ item }} -j ACCEPT"
+  with_items:
+    - 80
+    - 4000
+    - 4001
+
+- name: save iptables
+  command: service iptables save

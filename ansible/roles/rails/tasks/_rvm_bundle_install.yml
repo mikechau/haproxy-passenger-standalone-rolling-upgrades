@@ -1,4 +1,9 @@
 ---
+- name: install bundler (all)
+  shell: bash -lc 'gem install bundler'
+  args:
+    chdir: "{{ rails_app_path }}"
+
 - name: bundle install (all)
   shell: bash -lc 'bundle install'
   args:

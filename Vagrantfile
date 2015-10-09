@@ -5,14 +5,9 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "chef/centos-6.5"
+  config.vm.box = "puphpet/centos65-x64"
 
   config.ssh.forward_agent = true
-
-  config.ssh.private_key_path = [
-    '~/.vagrant.d/insecure_private_key',
-    '~/.ssh/id_rsa'
-  ]
 
   # Main Server Entry Point via Haproxy
   config.vm.network 'forwarded_port', guest: 80, host: 8080
